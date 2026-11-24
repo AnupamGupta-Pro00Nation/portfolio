@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anupam Gupta // Cybersecurity Researcher</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ff66'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.54-3.04 8.79-7 9.9-3.96-1.11-7-5.36-7-9.9V6.3l7-3.12z'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://anupamguptaportfolio.vercel.app/">
+  <meta name="robots" content="index, follow">
+  
+  <meta name="description" content="Official Gateway of Anupam Gupta — Cybersecurity Researcher specializing in Web Application Penetration Testing (OWASP Top 10) and low-level pure C Network Intrusion Detection (NIDS).">
+  <meta name="keywords" content="Anupam Gupta, Cybersecurity, WAPT, Penetration Testing, CyberCell Lucknow, NIDS, Npcap, libpcap, Metasploit, Splunk, GLA University">
+  <meta name="author" content="Anupam Gupta">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://anupamguptaportfolio.vercel.app/">
+  <meta property="og:title" content="Anupam Gupta // Cybersecurity Researcher">
+  <meta property="og:description" content="Interactive cyber security gateway. Discover WAPT assessments, pure C intrusion detection systems, and threat investigations.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/AnupamGupta-Pro00Nation/Advanced-NIDS/main/og-image.png">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./styles/variables.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/effects.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/landing.css?v=2.2.0">
+</head>
+<body class="landing-body" data-theme="green">
+
+  <!-- Fullscreen Warp Transition Flash -->
+  <div class="warp-portal-overlay" id="warp-overlay"></div>
+
+  <!-- Background Interactive Canvases -->
+  <canvas id="landing-matrix-canvas"></canvas>
+  <canvas id="landing-interactive-canvas" class="landing-bg-canvas"></canvas>
+
+  <!-- Top Gateway Bar -->
+  <header class="landing-top-bar">
+    <div class="landing-brand">
+      <span class="status-beacon pulsing" style="width: 7px; height: 7px; background: var(--clr-success); border-radius: 50%; display: inline-block;"></span>
+      <span>ANUPAM_GUPTA // GATEWAY</span>
+    </div>
+
+    <div class="landing-top-controls">
+      <!-- Theme Switcher -->
+      <div class="landing-theme-toggle" title="Switch Accent Palette">
+        <button class="theme-pill active" data-theme="green" style="background: #00ff66;" title="Matrix Green"></button>
+        <button class="theme-pill" data-theme="cyan" style="background: #00f3ff;" title="Cyber Cyan"></button>
+        <button class="theme-pill" data-theme="amber" style="background: #ffb700;" title="Hacker Amber"></button>
+      </div>
+
+      <!-- Sound Toggle -->
+      <button class="landing-sound-btn" id="sound-toggle-btn" title="Toggle Interactive Audio">
+        <span>🔊</span>
+        <span>SOUND: ACTIVE</span>
+      </button>
+
+      <!-- Fast Direct Skip -->
+      <a href="portfolio.html" class="btn-secondary-action" style="padding: 0.35rem 0.85rem; font-size: 0.72rem; text-decoration: none;" title="Skip directly to full portfolio dashboard">
+        <span>DIRECT PORTFOLIO ↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Center Main Stage -->
+  <main class="landing-main-stage">
+    
+    <div class="landing-deck">
+      
+      <!-- Identity Header -->
+      <div class="deck-header">
+        <div>
+          <div class="deck-tag">
+            <span class="status-beacon pulsing" style="width: 6px; height: 6px; background: var(--clr-success); border-radius: 50%; display: inline-block;"></span>
+            <span>AUTHORIZED VISITOR GATEWAY // SEC_OPS</span>
+          </div>
+          <h1 class="deck-title glitch-hover" data-text="ANUPAM GUPTA">ANUPAM GUPTA</h1>
+          <div class="deck-role">PURPLE TEAMING • WEB APPLICATION SECURITY • JAVA / PYTHON / C SYSTEMS</div>
+          <p class="deck-bio">
+            B.Tech Computer Science (Cybersecurity) student at GLA University specializing in Web Application Penetration Testing (OWASP Top 10), Purple Teaming, and security tooling (PurpleLoop, Advanced-NIDS). Ex-WAPT & CTF Intern at CyberCell HQ Lucknow (UP Police).
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Deck Tabs -->
+      <div class="interactive-tabs-bar">
+        <button class="int-tab-btn active" data-tab="biometric">
+          <span>⚡</span> <span>BIOMETRIC HANDSHAKE</span>
+        </button>
+        <button class="int-tab-btn" data-tab="cipher">
+          <span>🔐</span> <span>REAL-TIME SHANNON CIPHER</span>
+        </button>
+        <button class="int-tab-btn" data-tab="threats">
+          <span>📡</span> <span>ACTIVE THREAT RADAR</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Biometric Handshake Scanner -->
+      <div class="int-panel active" id="panel-biometric">
+        <div class="scanner-grid">
+          <div class="scanner-pad" id="biometric-scanner-pad" title="Click to initiate security biometric scan">
+            <div class="scanner-laser"></div>
+            <svg class="scanner-fingerprint-svg" viewBox="0 0 24 24">
+              <path d="M12 2a10 10 0 0 0-10 10c0 4.1 2.5 7.6 6.1 9.1l.9-1.8A8 8 0 0 1 4 12a8 8 0 0 1 16 0c0 2.8-1.5 5.3-3.7 6.7l.9 1.8A10 10 0 0 0 12 2z"/>
+              <path d="M12 6a6 6 0 0 0-6 6c0 2.5 1.5 4.6 3.7 5.5l.8-1.8A4 4 0 0 1 8 12a4 4 0 0 1 8 0c0 1.4-.7 2.7-1.8 3.4l.8 1.8A6 6 0 0 0 12 6z"/>
+              <path d="M12 10a2 2 0 0 0-2 2c0 .7.4 1.3 1 1.7l.6-1.9c-.1-.1-.1-.3-.1-.5a.5.5 0 0 1 1 0c0 .2 0 .4-.1.5l.6 1.9c.6-.4 1-1 1-1.7a2 2 0 0 0-2-2z"/>
+            </svg>
+            <span class="scanner-pad-label">[ TAP TO SCAN ]</span>
+          </div>
+
+          <div>
+            <div style="font-family: var(--font-header); font-size: 0.85rem; color: #fff; margin-bottom: 0.5rem; letter-spacing: 0.04em;">
+              INTERACTIVE REPUTATION & INTEGRITY HANDSHAKE
+            </div>
+            <div class="scanner-terminal-output" id="scan-terminal-log">
+              <span>> System online. Click scanner pad to execute cryptographic audit...</span>
+            </div>
+            <div class="scanner-progress-track">
+              <div class="scanner-progress-fill" id="scan-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Live Shannon Entropy Cipher Tester -->
+      <div class="int-panel" id="panel-cipher">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--clr-text-muted); margin-bottom: 0.5rem;">
+            TYPE BELOW TO TEST MATHEMATICAL SHANNON ENTROPY & GPU BRUTE-FORCE RESILIENCE:
+          </div>
+          <div class="cipher-input-row">
+            <input type="text" class="cipher-input" id="cipher-test-input" placeholder="Type a password, hash, or secret key here..." value="Advanced_NIDS@2026!">
+          </div>
+        </div>
+        <div class="cipher-stats-row">
+          <div class="cipher-stat-box">
+            <div class="cipher-stat-label">SHANNON ENTROPY:</div>
+            <div class="cipher-stat-val text-success" id="entropy-score-val">76.4 bits</div>
+          </div>
+          <div class="cipher-stat-box">
+            <div class="cipher-stat-label">CHAR POOL SIZE:</div>
+            <div class="cipher-stat-val text-accent" id="pool-size-val">95 chars</div>
+          </div>
+          <div class="cipher-stat-box">
+            <div class="cipher-stat-label">CRACK TIME ESTIMATE:</div>
+            <div class="cipher-stat-val text-primary" id="crack-time-val">Centuries+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Active Threat Radar -->
+      <div class="int-panel" id="panel-threats">
+        <div class="threat-items-grid">
+          <div class="threat-card-item">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--clr-alert); font-weight: 700;">TCP SYN FLOOD (45.22.190.1)</div>
+            <div style="font-size: 0.7rem; color: var(--clr-text-muted);">Sliding-window buffer anomaly detected on raw socket port 80.</div>
+            <button class="threat-neutralize-btn">NEUTRALIZE THREAT</button>
+          </div>
+          <div class="threat-card-item">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--clr-alert); font-weight: 700;">SQLi INJECTION PROBE</div>
+            <div style="font-size: 0.7rem; color: var(--clr-text-muted);">1=1 boolean fuzzing pattern identified on authentication endpoint.</div>
+            <button class="threat-neutralize-btn">NEUTRALIZE THREAT</button>
+          </div>
+          <div class="threat-card-item">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--clr-alert); font-weight: 700;">STEALTH PORT SWEEP</div>
+            <div style="font-size: 0.7rem; color: var(--clr-text-muted);">Sequential probe across ports 21-445 from remote IP 185.190.140.23.</div>
+            <button class="threat-neutralize-btn">NEUTRALIZE THREAT</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Major Action Deck -->
+      <div class="deck-actions-grid">
+        <a href="portfolio.html" class="btn-launch-portfolio" id="btn-enter-portfolio">
+          <span>ENTER PORTFOLIO // DASHBOARD →</span>
+        </a>
+        <a href="./assets/Anupam_Gupta_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary-action">
+          <span>VIEW RESUME (PDF) ↗</span>
+        </a>
+        <a href="portfolio.html#/sandbox" class="btn-secondary-action">
+          <span>LIVE C-NIDS SANDBOX ↗</span>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Bottom Helper Bar -->
+  <footer class="landing-footer-bar">
+    <div class="footer-key-hint">
+      <span>KEYBOARD ACCESS:</span>
+      <span class="key-badge">ENTER</span>
+      <span>OR</span>
+      <span class="key-badge">SPACE</span>
+      <span>TO LAUNCH PORTFOLIO</span>
+    </div>
+    <div>BASE: JHANSI / MATHURA, INDIA (IST)</div>
+    <div style="color: var(--clr-success); font-weight: 700;">● STATUS: READY FOR CYBERSECURITY ROLES</div>
+  </footer>
+
+  <!-- Gateway Interactive Logic -->
+  <script src="./js/landing.js?v=2.2.0"></script>
+</body>
+</html>

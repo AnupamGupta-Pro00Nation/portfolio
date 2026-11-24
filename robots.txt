@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anupamguptaportfolio.vercel.app/sitemap.xml

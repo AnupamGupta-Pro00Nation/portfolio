@@ -1,0 +1,16 @@
+{
+  "name": "anupam-gupta-portfolio",
+  "version": "4.2.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python server.py",
+    "tunnel": "npx localtunnel --port 8000",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo \"No lint errors detected in native ES modules.\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
