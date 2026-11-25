@@ -196,7 +196,7 @@
     if (!el || el.dataset.typewriterInit) return;
     el.dataset.typewriterInit = '1';
     var phrases = el.textContent.split('•').map(function (p) { return p.trim(); }).filter(Boolean);
-    if (phrases.length < 2 || reducedMotion) return;
+    if (phrases.length < 2) return; /* v3.1: typewriter runs even under reduced-motion (owner decision) */
 
     var textSpan = document.createElement('span');
     var caret = document.createElement('span');

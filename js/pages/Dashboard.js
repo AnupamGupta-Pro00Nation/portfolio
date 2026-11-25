@@ -789,8 +789,11 @@ export class DashboardPage {
               email: email,
               message: message,
               _subject: `New Portfolio Inquiry from ${name} (${email})`,
+              _replyto: email,
               _template: 'table',
-              _captcha: 'false'
+              _captcha: 'false',
+              _honey: '',
+              _autoresponse: `Hi ${name}, thanks for reaching out through my portfolio. Your message has been delivered to Anupam Gupta and he will reply to this email address. — Anupam Gupta, Cybersecurity Researcher`
             })
           });
 

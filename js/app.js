@@ -3,7 +3,7 @@ import { HashRouter } from './router/index.js';
 import { playSound, initAudioContext } from './hooks/useAudio.js';
 import { startThreatMonitoring } from './api/threats.js';
 import { navLinks } from './data/navigation.js?v=3.0.0';
-import { DashboardPage } from './pages/Dashboard.js?v=3.0.0';
+import { DashboardPage } from './pages/Dashboard.js?v=3.0.1';
 import { TerminalViewPage } from './pages/TerminalView.js?v=3.0.0';
 import { SandboxPage } from './pages/Sandbox.js?v=3.0.0';
 

@@ -7,8 +7,11 @@
 (function () {
   'use strict';
 
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (reducedMotion.matches) return;
+  // Owner decision (v3.1): the custom cursor is the site's signature effect
+  // and must run even when the OS reports prefers-reduced-motion (that flag
+  // is on by default in many Windows/Android setups and silently killed the
+  // cursor for the site owner). Reduced motion only drops the sparkle trail.
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var finePointer = window.matchMedia('(pointer: fine)');
 
@@ -81,6 +84,7 @@
   var sparkles = [];
   var lastSparkle = 0;
   function spawnSparkle(x, y, now) {
+    if (reducedMotion) return;
     if (now - lastSparkle < 40) return;
     lastSparkle = now;
     if (sparkles.length >= 24) {

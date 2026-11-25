@@ -163,6 +163,7 @@
 .spotlight:hover::before { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-dot, .cursor-ring, .cursor-sparkle, .touch-ripple, .touch-glow { display: none !important; }
+  /* v3.1: cursor/touch effects stay visible by owner decision; only the
+     magnetic transition is calmed. Sparkles are gated in Cursor.js. */
   .magnetic { transition: none; }
 }

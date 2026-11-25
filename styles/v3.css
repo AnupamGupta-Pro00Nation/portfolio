@@ -492,19 +492,13 @@ body[data-theme="light"] {
   }
 }
 
-/* ---------- Reduced motion: calm everything ---------- */
+/* ---------- Reduced motion (v3.1, owner decision) ----------
+   The signature ambient animations (aurora drift, marquee, gradient text,
+   float, avatar pulse) KEEP RUNNING even under prefers-reduced-motion —
+   that OS flag is on in many default Windows/Android setups and silently
+   made the whole site look static for the owner. Only the one-shot entrance
+   choreography is skipped (elements are simply visible). */
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob,
-  .aurora-bg::before, .aurora-bg::after,
-  .aurora-stars,
-  .deck-title, .hero-name, .gateway-title,
-  .landing-deck, .scanner-pad, .hero-terminal-deck,
-  .skills-marquee-track,
-  .cyber-btn-primary::after, .btn-launch-portfolio::after,
-  .featured-card,
-  .hero-avatar::before, .hero-avatar::after {
-    animation: none !important;
-  }
   .landing-deck > *, .hero-content > *, .landing-top-bar, .landing-footer-bar, .app-sidebar {
     animation: none !important;
     opacity: 1 !important;
