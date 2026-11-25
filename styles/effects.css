@@ -397,12 +397,12 @@
   box-shadow: 0 0 6px var(--clr-accent);
 }
 
-/* Prefers Reduced Motion Accessibility Guard */
+/* Prefers Reduced Motion (v3.1, owner decision): the universal animation
+   kill that used to live here (animation-duration: 0.001ms on *) silently
+   froze every animation on machines with the OS animations-off flag —
+   including the owner's. It is removed; only smooth-scroll is calmed. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+  html {
     scroll-behavior: auto !important;
   }
   .nids-pkt-chip {

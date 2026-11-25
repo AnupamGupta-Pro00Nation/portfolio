@@ -154,5 +154,5 @@
   }
   .cmdk-panel { animation: none; }
   .tilt-card { transition: none; }
-  .aurora-bg::before, .aurora-bg::after { animation: none !important; }
+  /* v3.1: aurora pseudo-blobs keep drifting by owner decision */
 }
