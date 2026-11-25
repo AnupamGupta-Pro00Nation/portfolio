@@ -1,13 +1,13 @@
-import { projects } from '../data/projects.js?v=2.2.0';
-import { experience } from '../data/experience.js?v=2.2.0';
-import { certifications } from '../data/certifications.js?v=2.2.0';
-import { skills } from '../data/skills.js?v=2.2.0';
-import { socials } from '../data/socials.js?v=2.2.0';
-import { achievements } from '../data/achievements.js?v=2.2.0';
-import { profile } from '../data/profile.js?v=2.2.0';
+import { projects } from '../data/projects.js?v=3.0.0';
+import { experience } from '../data/experience.js?v=3.0.0';
+import { certifications } from '../data/certifications.js?v=3.0.0';
+import { skills } from '../data/skills.js?v=3.0.0';
+import { socials } from '../data/socials.js?v=3.0.0';
+import { achievements } from '../data/achievements.js?v=3.0.0';
+import { profile } from '../data/profile.js?v=3.0.0';
 import { store } from '../lib/store.js';
 import { playSound } from '../hooks/useAudio.js';
-import { probeEndpoint, getGitHubLiveStats } from '../utils/liveStatus.js?v=2.2.0';
+import { probeEndpoint, getGitHubLiveStats } from '../utils/liveStatus.js?v=3.0.0';
 
 export const commands = {
   help: {

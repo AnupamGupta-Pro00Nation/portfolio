@@ -1,13 +1,58 @@
-// js/components/Cursor.js — Custom editorial cursor (vanilla JS, no dependencies)
-// Dot follows instantly, ring follows with lerp. Disabled on touch/coarse
-// pointers and when prefers-reduced-motion is set; native cursor then stays.
+// js/components/Cursor.js — Cursor v2 "Aurora Glass" (vanilla JS, no dependencies)
+// Desktop (pointer:fine): instant dot + lerped 44px ring with a rotating
+// conic-gradient border, hover grow + label, magnetic pull, spotlight vars,
+// and a throttled sparkle trail (max ~24 live particles).
+// Touch (pointer:coarse): tap ripple + drag glow dot — the tablet/phone
+// feedback v1 lacked. prefers-reduced-motion disables everything.
 (function () {
   'use strict';
 
-  var finePointer = window.matchMedia('(pointer: fine)');
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!finePointer.matches || reducedMotion.matches) return;
+  if (reducedMotion.matches) return;
 
+  var finePointer = window.matchMedia('(pointer: fine)');
+
+  /* ================= Touch feedback (coarse pointers) ================= */
+  if (!finePointer.matches) {
+    var glow = document.createElement('div');
+    glow.className = 'touch-glow';
+    glow.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(glow);
+
+    function spawnRipple(x, y) {
+      var ripple = document.createElement('div');
+      ripple.className = 'touch-ripple';
+      ripple.setAttribute('aria-hidden', 'true');
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      document.body.appendChild(ripple);
+      setTimeout(function () { ripple.remove(); }, 600);
+    }
+    function moveGlow(x, y) {
+      glow.style.left = x + 'px';
+      glow.style.top = y + 'px';
+    }
+
+    document.addEventListener('touchstart', function (e) {
+      var t = e.touches[0];
+      if (!t) return;
+      spawnRipple(t.clientX, t.clientY);
+      moveGlow(t.clientX, t.clientY);
+      glow.classList.add('on');
+    }, { passive: true });
+    document.addEventListener('touchmove', function (e) {
+      var t = e.touches[0];
+      if (!t) return;
+      moveGlow(t.clientX, t.clientY);
+      glow.classList.add('on');
+    }, { passive: true });
+    function glowOff() { glow.classList.remove('on'); }
+    document.addEventListener('touchend', glowOff, { passive: true });
+    document.addEventListener('touchcancel', glowOff, { passive: true });
+    return;
+  }
+
+  /* ================= Desktop custom cursor ================= */
   var dot = document.createElement('div');
   dot.className = 'cursor-dot';
   dot.setAttribute('aria-hidden', 'true');
@@ -31,10 +76,41 @@
   var scale = 1;
   var targetScale = 1;
 
+  /* Sparkle trail: throttled spawns, capped live-particle count */
+  var sparkleColors = ['#7C7CF4', '#E879F9', '#F472B6', '#22D3EE'];
+  var sparkles = [];
+  var lastSparkle = 0;
+  function spawnSparkle(x, y, now) {
+    if (now - lastSparkle < 40) return;
+    lastSparkle = now;
+    if (sparkles.length >= 24) {
+      var oldest = sparkles.shift();
+      if (oldest) oldest.remove();
+    }
+    var s = document.createElement('span');
+    s.className = 'cursor-sparkle';
+    s.setAttribute('aria-hidden', 'true');
+    var size = 3 + Math.random() * 4;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = (x + (Math.random() * 18 - 9)) + 'px';
+    s.style.top = (y + (Math.random() * 18 - 9)) + 'px';
+    s.style.background = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+    s.style.boxShadow = '0 0 8px ' + s.style.background;
+    document.body.appendChild(s);
+    sparkles.push(s);
+    setTimeout(function () {
+      s.remove();
+      var i = sparkles.indexOf(s);
+      if (i !== -1) sparkles.splice(i, 1);
+    }, 620);
+  }
+
   document.addEventListener('mousemove', function (e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
     dot.style.transform = 'translate(' + mouseX + 'px,' + mouseY + 'px) translate(-50%,-50%)';
+    spawnSparkle(mouseX, mouseY, performance.now());
     handleSpotlight(e);
     handleMagnetic(e);
   }, { passive: true });
@@ -44,7 +120,7 @@
 
   var hoverKind = 'default'; // default | interactive | text
   function currentBaseScale() {
-    if (hoverKind === 'interactive') return 1.8;
+    if (hoverKind === 'interactive') return 1.7;
     if (hoverKind === 'text') return 1;
     return 1;
   }

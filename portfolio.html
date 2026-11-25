@@ -32,12 +32,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./styles/variables.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/global.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/effects.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/hero.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/cursor.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/motion.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/variables.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/global.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/effects.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/hero.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/cursor.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/motion.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/v3.css?v=3.0.0">
 
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json">
@@ -103,7 +104,13 @@
 <body class="cyber-executive">
 
   <!-- Aurora gradient mesh background -->
-  <div class="aurora-bg" aria-hidden="true"></div>
+  <div class="aurora-bg" aria-hidden="true">
+    <span class="aurora-blob blob-indigo"></span>
+    <span class="aurora-blob blob-pink"></span>
+    <span class="aurora-blob blob-cyan"></span>
+    <span class="aurora-stars"></span>
+    <span class="aurora-grain"></span>
+  </div>
 
   <!-- Main App Wrapper -->
   <div id="app-container">
@@ -114,11 +121,6 @@
         <span>ANUPAM GUPTA</span>
         <span class="nav-version-tag">CYBERSECURITY</span>
       </a>
-
-      <!-- Desktop Nav links -->
-      <ul class="nav-links">
-        <!-- Rendered dynamically from /js/data/navigation.js -->
-      </ul>
 
       <div class="nav-actions">
         <!-- Professional Availability Badge -->
@@ -157,7 +159,46 @@
 
     <!-- Core Grid Workspace -->
     <main class="dashboard-grid">
-      
+
+      <!-- App Sidebar (desktop >=1024px): profile + primary navigation.
+           The .nav-links list lives here now; js/app.js renderNavigation()
+           fills it via querySelector('.nav-links') exactly as before, and
+           Motion.js scroll-spy highlights its .nav-link-item children. -->
+      <aside class="app-sidebar" id="app-sidebar">
+        <div class="sidebar-profile">
+          <div class="hero-avatar" aria-hidden="true"><span>AG</span></div>
+          <div class="sidebar-name">Anupam Gupta</div>
+          <div class="sidebar-role">Cybersecurity Researcher</div>
+          <div class="sidebar-status">
+            <span class="status-indicator pulsing" style="width: 6px; height: 6px;"></span>
+            <span>OPEN TO ROLES</span>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Primary">
+          <span class="sidebar-nav-indicator" aria-hidden="true"></span>
+          <ul class="nav-links sidebar-nav-links">
+            <!-- Rendered dynamically from /js/data/navigation.js -->
+          </ul>
+        </nav>
+
+        <div class="sidebar-block">
+          <span class="sidebar-block-label">COLOR_THEME</span>
+          <div class="sidebar-theme-row">
+            <button class="sidebar-theme-btn" data-val="dark" title="Editorial Dark" aria-label="Dark theme"><span class="theme-dot" style="background: #7C7CF4;"></span>Dark</button>
+            <button class="sidebar-theme-btn" data-val="light" title="Editorial Light" aria-label="Light theme"><span class="theme-dot" style="background: #F7F5F0;"></span>Light</button>
+          </div>
+        </div>
+
+        <div class="sidebar-block sidebar-socials">
+          <span class="sidebar-block-label">CONNECT</span>
+          <a href="https://github.com/AnupamGupta-Pro00Nation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/anupam-gupta-9294a234a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://credly.com/users/anupam-gupta.8e0a3913" target="_blank" rel="noopener noreferrer">Credly</a>
+          <a href="https://tryhackme.com/p/LuciferDevill" target="_blank" rel="noopener noreferrer">TryHackMe</a>
+        </div>
+      </aside>
+
       <!-- Tactical Telemetry Dashboard Left Sidebar (Command Center HUD) -->
       <aside class="side-control-panel" id="telemetry-drawer">
         
@@ -257,12 +298,12 @@
   </div>
 
   <!-- Interaction Enhancements (vanilla, non-module) -->
-  <script src="./js/components/Cursor.js?v=2.2.0"></script>
-  <script src="./js/components/Motion.js?v=2.2.0"></script>
-  <script src="./js/components/CommandPalette.js?v=2.2.0"></script>
+  <script src="./js/components/Cursor.js?v=3.0.0"></script>
+  <script src="./js/components/Motion.js?v=3.0.0"></script>
+  <script src="./js/components/CommandPalette.js?v=3.0.0"></script>
 
   <!-- Entry Script (Native ES Module) -->
-  <script type="module" src="./js/app.js?v=2.2.0"></script>
+  <script type="module" src="./js/app.js?v=3.0.0"></script>
 </body>
 </html>
 

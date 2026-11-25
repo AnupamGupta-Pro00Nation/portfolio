@@ -31,11 +31,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./styles/variables.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/effects.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/landing.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/cursor.css?v=2.2.0">
-  <link rel="stylesheet" href="./styles/motion.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/variables.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/effects.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/landing.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/cursor.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/motion.css?v=3.0.0">
+  <link rel="stylesheet" href="./styles/v3.css?v=3.0.0">
 </head>
 <body class="landing-body" data-theme="dark">
 
@@ -43,7 +44,13 @@
   <div class="warp-portal-overlay" id="warp-overlay"></div>
 
   <!-- Aurora gradient mesh background + interactive constellation canvas -->
-  <div class="aurora-bg" aria-hidden="true"></div>
+  <div class="aurora-bg" aria-hidden="true">
+    <span class="aurora-blob blob-indigo"></span>
+    <span class="aurora-blob blob-pink"></span>
+    <span class="aurora-blob blob-cyan"></span>
+    <span class="aurora-stars"></span>
+    <span class="aurora-grain"></span>
+  </div>
   <canvas id="landing-interactive-canvas" class="landing-bg-canvas"></canvas>
 
   <!-- Top Gateway Bar -->
@@ -81,6 +88,7 @@
       <!-- Identity Header -->
       <div class="deck-header">
         <div>
+          <div class="hero-avatar hero-avatar-sm" aria-hidden="true"><span>AG</span></div>
           <div class="deck-tag">
             <span class="status-beacon pulsing" style="width: 6px; height: 6px; background: var(--clr-success); border-radius: 50%; display: inline-block;"></span>
             <span>AUTHORIZED VISITOR GATEWAY // SEC_OPS</span>
@@ -193,6 +201,14 @@
         </a>
       </div>
 
+      <!-- Skills marquee (terms already used across this page) -->
+      <div class="skills-marquee" aria-hidden="true">
+        <div class="skills-marquee-track">
+          <span>OWASP Top 10</span><span>Metasploit</span><span>Splunk</span><span>Nmap</span><span>libpcap / Npcap</span><span>Purple Teaming</span><span>Java</span><span>Python</span><span>C</span><span>WAPT</span><span>NIDS</span><span>CTF</span>
+          <span>OWASP Top 10</span><span>Metasploit</span><span>Splunk</span><span>Nmap</span><span>libpcap / Npcap</span><span>Purple Teaming</span><span>Java</span><span>Python</span><span>C</span><span>WAPT</span><span>NIDS</span><span>CTF</span>
+        </div>
+      </div>
+
     </div>
 
   </main>
@@ -211,9 +227,9 @@
   </footer>
 
   <!-- Gateway Interactive Logic -->
-  <script src="./js/landing.js?v=2.2.0"></script>
-  <script src="./js/components/Cursor.js?v=2.2.0"></script>
-  <script src="./js/components/Motion.js?v=2.2.0"></script>
-  <script src="./js/components/CommandPalette.js?v=2.2.0"></script>
+  <script src="./js/landing.js?v=3.0.0"></script>
+  <script src="./js/components/Cursor.js?v=3.0.0"></script>
+  <script src="./js/components/Motion.js?v=3.0.0"></script>
+  <script src="./js/components/CommandPalette.js?v=3.0.0"></script>
 </body>
 </html>

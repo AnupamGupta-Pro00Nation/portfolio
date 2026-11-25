@@ -1,8 +1,8 @@
-import { projects } from '../data/projects.js?v=2.2.0';
-import { experience } from '../data/experience.js?v=2.2.0';
-import { certifications, proofDocuments } from '../data/certifications.js?v=2.2.0';
-import { achievements } from '../data/achievements.js?v=2.2.0';
-import { profile } from '../data/profile.js?v=2.2.0';
+import { projects } from '../data/projects.js?v=3.0.0';
+import { experience } from '../data/experience.js?v=3.0.0';
+import { certifications, proofDocuments } from '../data/certifications.js?v=3.0.0';
+import { achievements } from '../data/achievements.js?v=3.0.0';
+import { profile } from '../data/profile.js?v=3.0.0';
 import { MDXCompiler } from '../lib/mdx.js';
 import { DecryptText } from '../components/DecryptText.js';
 import { CyberButton } from '../components/CyberButton.js';
@@ -12,9 +12,9 @@ import { useIntersection } from '../hooks/useIntersection.js';
 import { toast } from '../components/Toast.js';
 import { playSound } from '../hooks/useAudio.js';
 import { store } from '../lib/store.js';
-import { PurpleLoopSim } from '../components/PurpleLoopSim.js?v=2.2.0';
-import { NidsPacketSim } from '../components/NidsPacketSim.js?v=2.2.0';
-import { checkPurpleLoopStatus, getGitHubLiveStats } from '../utils/liveStatus.js?v=2.2.0';
+import { PurpleLoopSim } from '../components/PurpleLoopSim.js?v=3.0.0';
+import { NidsPacketSim } from '../components/NidsPacketSim.js?v=3.0.0';
+import { checkPurpleLoopStatus, getGitHubLiveStats } from '../utils/liveStatus.js?v=3.0.0';
 
 export class DashboardPage {
   constructor(mountId) {
@@ -87,7 +87,7 @@ export class DashboardPage {
       const isPurpleLoop = p.id === 'purpleloop';
       const isNids = p.id === 'network-intrusion-detection';
       return `
-      <div class="bracket-card spotlight tilt-card" style="margin-bottom: 1.75rem;">
+      <div class="bracket-card spotlight tilt-card${idx === 0 ? ' featured-card' : ''}" style="margin-bottom: 1.75rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--clr-border); padding-bottom: 0.65rem;">
           <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--clr-primary); font-weight: 700;">[ PROJECT 0${idx + 1} ]</span>

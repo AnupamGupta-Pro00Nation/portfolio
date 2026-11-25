@@ -183,3 +183,82 @@
     init();
   }
 })();
+
+/* ---------- v3 additions: landing typewriter + sidebar theme wiring ---------- */
+(function () {
+  'use strict';
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Typewriter rotating through the roles already written in .deck-role
+     (the element's own " • "-separated text — no new titles invented). */
+  function initTypewriter() {
+    var el = document.querySelector('.deck-role');
+    if (!el || el.dataset.typewriterInit) return;
+    el.dataset.typewriterInit = '1';
+    var phrases = el.textContent.split('•').map(function (p) { return p.trim(); }).filter(Boolean);
+    if (phrases.length < 2 || reducedMotion) return;
+
+    var textSpan = document.createElement('span');
+    var caret = document.createElement('span');
+    caret.className = 'type-caret';
+    caret.textContent = '|';
+    caret.setAttribute('aria-hidden', 'true');
+    el.textContent = '';
+    el.appendChild(textSpan);
+    el.appendChild(caret);
+    el.setAttribute('aria-label', phrases.join(', '));
+
+    var phraseIdx = 0;
+    var charIdx = 0;
+    var deleting = false;
+    function tick() {
+      var phrase = phrases[phraseIdx];
+      if (!deleting) {
+        charIdx++;
+        textSpan.textContent = phrase.substring(0, charIdx);
+        if (charIdx === phrase.length) {
+          deleting = true;
+          setTimeout(tick, 1700);
+          return;
+        }
+        setTimeout(tick, 55);
+      } else {
+        charIdx--;
+        textSpan.textContent = phrase.substring(0, charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(tick, 350);
+          return;
+        }
+        setTimeout(tick, 28);
+      }
+    }
+    setTimeout(tick, 600);
+  }
+
+  /* Sidebar theme buttons: forward clicks to the app's own theme controls
+     (#theme-btn-group .theme-select-btn in the telemetry panel), so the
+     store, persistence and active-state logic stay exactly as built. */
+  function initSidebar() {
+    var buttons = document.querySelectorAll('.sidebar-theme-btn');
+    if (!buttons.length) return;
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var val = btn.getAttribute('data-val');
+        var target = document.querySelector('#theme-btn-group .theme-select-btn[data-val="' + val + '"]');
+        if (target) target.click();
+      });
+    });
+  }
+
+  function init() {
+    initTypewriter();
+    initSidebar();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

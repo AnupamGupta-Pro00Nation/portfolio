@@ -1,4 +1,4 @@
-import { commands } from '../config/commands.js?v=2.2.0';
+import { commands } from '../config/commands.js?v=3.0.0';
 import { MDXCompiler } from '../lib/mdx.js';
 import { playSound } from '../hooks/useAudio.js';
 import { CyberButton } from './CyberButton.js';
