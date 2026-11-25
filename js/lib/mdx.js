@@ -30,7 +30,7 @@ export class MDXCompiler {
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
-      return `<pre class="code-block language-${lang}"><code class="crt-flicker">${escapedCode}</code></pre>`;
+      return `<pre class="code-block language-${lang}"><code>${escapedCode}</code></pre>`;
     });
 
     // Parse Inline Code

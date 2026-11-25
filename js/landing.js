@@ -217,52 +217,7 @@ class LandingAudioEngine {
 
 const audio = new LandingAudioEngine();
 
-// Matrix Rain Canvas in deep background
-function initMatrixRain() {
-  const canvas = document.getElementById('landing-matrix-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
-
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  const chars = '0123456789ABCDEF<>/*&%$#@!+-=~';
-  const fontSize = 14;
-  const columns = Math.floor(width / fontSize);
-  const drops = Array(columns).fill(1);
-
-  function draw() {
-    ctx.fillStyle = 'rgba(7, 9, 14, 0.12)';
-    ctx.fillRect(0, 0, width, height);
-
-    ctx.fillStyle = '#00ff66';
-    ctx.font = `${fontSize}px monospace`;
-
-    for (let i = 0; i < drops.length; i++) {
-      const char = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-
-  setInterval(draw, 45);
-}
-
-// 3D-feeling Interactive Radar & Constellation Canvas
+// Interactive constellation canvas (aurora mesh itself is CSS, styles/effects.css)
 function initInteractiveCanvas() {
   const canvas = document.getElementById('landing-interactive-canvas');
   if (!canvas) return;
@@ -302,37 +257,8 @@ function initInteractiveCanvas() {
     });
   }
 
-  let radarAngle = 0;
-
   function render() {
     ctx.clearRect(0, 0, width, height);
-
-    // Radar concentric circles
-    const centerX = width / 2;
-    const centerY = height / 2;
-    ctx.strokeStyle = 'rgba(0, 243, 255, 0.04)';
-    ctx.lineWidth = 1;
-    for (let r = 120; r < Math.max(width, height); r += 160) {
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    // Rotating Radar Sweep
-    radarAngle += 0.012;
-    ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.rotate(radarAngle);
-    const grad = ctx.createLinearGradient(0, 0, 450, 450);
-    grad.addColorStop(0, 'rgba(0, 243, 255, 0.12)');
-    grad.addColorStop(1, 'rgba(0, 243, 255, 0.0)');
-    ctx.fillStyle = grad;
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.arc(0, 0, 500, 0, Math.PI / 5);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
 
     // Update and draw nodes
     nodes.forEach(node => {
@@ -353,7 +279,7 @@ function initInteractiveCanvas() {
         node.y -= (dy / dist) * 1.5;
       }
 
-      ctx.fillStyle = `rgba(0, 255, 159, ${node.baseAlpha})`;
+      ctx.fillStyle = `rgba(255, 184, 107, ${node.baseAlpha * 0.8})`;
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
       ctx.fill();
@@ -367,29 +293,13 @@ function initInteractiveCanvas() {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 110) {
           const alpha = (1 - dist / 110) * 0.18;
-          ctx.strokeStyle = `rgba(0, 243, 255, ${alpha})`;
+          ctx.strokeStyle = `rgba(124, 124, 244, ${alpha})`;
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
           ctx.stroke();
         }
       }
-    }
-
-    // Interactive cursor targeting reticle
-    if (mouse.active) {
-      ctx.strokeStyle = 'rgba(0, 243, 255, 0.35)';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 20, 0, Math.PI * 2);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(mouse.x - 28, mouse.y);
-      ctx.lineTo(mouse.x + 28, mouse.y);
-      ctx.moveTo(mouse.x, mouse.y - 28);
-      ctx.lineTo(mouse.x, mouse.y + 28);
-      ctx.stroke();
     }
 
     requestAnimationFrame(render);
@@ -400,7 +310,6 @@ function initInteractiveCanvas() {
 
 // Interactive Tabs, Biometric Handshake, Cipher, and Transitions
 document.addEventListener('DOMContentLoaded', () => {
-  initMatrixRain();
   initInteractiveCanvas();
 
   // 1. First interaction unlocks audio
@@ -563,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = "NEUTRALIZED ✓";
         btn.style.color = "var(--clr-success)";
         btn.style.borderColor = "var(--clr-success)";
-        card.style.background = "rgba(0, 255, 159, 0.08)";
+        card.style.background = "rgba(74, 222, 128, 0.08)";
         card.style.borderColor = "var(--clr-success)";
         setTimeout(() => {
           card.style.opacity = '0.35';

@@ -13,7 +13,7 @@ export class ScanCard {
         label.style.animation = 'none';
         // force reflow
         void label.offsetWidth;
-        label.style.animation = 'crt-flicker-anim 0.3s infinite';
+        label.style.animation = '';
         setTimeout(() => {
           label.style.animation = '';
         }, 600);

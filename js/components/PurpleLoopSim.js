@@ -32,7 +32,7 @@ export class PurpleLoopSim {
             </span>
           </div>
           <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-            <div style="font-family: var(--font-mono); font-size: 0.78rem; background: rgba(0, 243, 255, 0.08); border: 1px solid var(--clr-border); padding: 0.25rem 0.65rem; border-radius: 3px;">
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; background: rgba(124, 124, 244, 0.08); border: 1px solid var(--clr-border); padding: 0.25rem 0.65rem; border-radius: 3px;">
               <span style="color: var(--clr-text-muted);">MTTD TIMER:</span>
               <strong id="pl-sim-timer" style="color: var(--clr-primary); margin-left: 0.35rem; font-size: 0.95rem;">0.00s</strong>
             </div>

@@ -14,7 +14,7 @@ export class TerminalViewPage {
     this.container.innerHTML = `
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--clr-border); padding-bottom: 1rem;">
         <div>
-          <h1 style="font-size: 1.8rem; margin-bottom: 0.25rem;" class="crt-flicker">
+          <h1 style="font-size: 1.8rem; margin-bottom: 0.25rem;">
             <DecryptText target="ROOT TERMINAL INTERFACE"></DecryptText>
           </h1>
           <p style="font-size: 0.8rem; color: var(--clr-text-muted);">

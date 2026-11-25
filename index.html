@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anupam Gupta // Cybersecurity Researcher</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ff66'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.54-3.04 8.79-7 9.9-3.96-1.11-7-5.36-7-9.9V6.3l7-3.12z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237C7CF4'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.54-3.04 8.79-7 9.9-3.96-1.11-7-5.36-7-9.9V6.3l7-3.12z'/%3E%3C/svg%3E">
   <link rel="canonical" href="https://anupamguptaportfolio.vercel.app/">
   <meta name="robots" content="index, follow">
   
@@ -29,19 +29,21 @@
   <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./styles/variables.css?v=2.2.0">
   <link rel="stylesheet" href="./styles/effects.css?v=2.2.0">
   <link rel="stylesheet" href="./styles/landing.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/cursor.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/motion.css?v=2.2.0">
 </head>
-<body class="landing-body" data-theme="green">
+<body class="landing-body" data-theme="dark">
 
   <!-- Fullscreen Warp Transition Flash -->
   <div class="warp-portal-overlay" id="warp-overlay"></div>
 
-  <!-- Background Interactive Canvases -->
-  <canvas id="landing-matrix-canvas"></canvas>
+  <!-- Aurora gradient mesh background + interactive constellation canvas -->
+  <div class="aurora-bg" aria-hidden="true"></div>
   <canvas id="landing-interactive-canvas" class="landing-bg-canvas"></canvas>
 
   <!-- Top Gateway Bar -->
@@ -54,9 +56,8 @@
     <div class="landing-top-controls">
       <!-- Theme Switcher -->
       <div class="landing-theme-toggle" title="Switch Accent Palette">
-        <button class="theme-pill active" data-theme="green" style="background: #00ff66;" title="Matrix Green"></button>
-        <button class="theme-pill" data-theme="cyan" style="background: #00f3ff;" title="Cyber Cyan"></button>
-        <button class="theme-pill" data-theme="amber" style="background: #ffb700;" title="Hacker Amber"></button>
+        <button class="theme-pill active" data-theme="dark" style="background: #7C7CF4;" title="Editorial Dark"></button>
+        <button class="theme-pill" data-theme="light" style="background: #F7F5F0;" title="Editorial Light"></button>
       </div>
 
       <!-- Sound Toggle -->
@@ -75,7 +76,7 @@
   <!-- Center Main Stage -->
   <main class="landing-main-stage">
     
-    <div class="landing-deck">
+    <div class="landing-deck spotlight">
       
       <!-- Identity Header -->
       <div class="deck-header">
@@ -84,7 +85,7 @@
             <span class="status-beacon pulsing" style="width: 6px; height: 6px; background: var(--clr-success); border-radius: 50%; display: inline-block;"></span>
             <span>AUTHORIZED VISITOR GATEWAY // SEC_OPS</span>
           </div>
-          <h1 class="deck-title glitch-hover" data-text="ANUPAM GUPTA">ANUPAM GUPTA</h1>
+          <h1 class="deck-title">ANUPAM GUPTA</h1>
           <div class="deck-role">PURPLE TEAMING • WEB APPLICATION SECURITY • JAVA / PYTHON / C SYSTEMS</div>
           <p class="deck-bio">
             B.Tech Computer Science (Cybersecurity) student at GLA University specializing in Web Application Penetration Testing (OWASP Top 10), Purple Teaming, and security tooling (PurpleLoop, Advanced-NIDS). Ex-WAPT & CTF Intern at CyberCell HQ Lucknow (UP Police).
@@ -145,11 +146,11 @@
         <div class="cipher-stats-row">
           <div class="cipher-stat-box">
             <div class="cipher-stat-label">SHANNON ENTROPY:</div>
-            <div class="cipher-stat-val text-success" id="entropy-score-val">76.4 bits</div>
+            <div class="cipher-stat-val text-success" id="entropy-score-val" data-count="76.4" data-decimals="1" data-suffix=" bits">76.4 bits</div>
           </div>
           <div class="cipher-stat-box">
             <div class="cipher-stat-label">CHAR POOL SIZE:</div>
-            <div class="cipher-stat-val text-accent" id="pool-size-val">95 chars</div>
+            <div class="cipher-stat-val text-accent" id="pool-size-val" data-count="95" data-suffix=" chars">95 chars</div>
           </div>
           <div class="cipher-stat-box">
             <div class="cipher-stat-label">CRACK TIME ESTIMATE:</div>
@@ -181,7 +182,7 @@
 
       <!-- Major Action Deck -->
       <div class="deck-actions-grid">
-        <a href="portfolio.html" class="btn-launch-portfolio" id="btn-enter-portfolio">
+        <a href="portfolio.html" class="btn-launch-portfolio magnetic" id="btn-enter-portfolio" data-cursor-label="Open">
           <span>ENTER PORTFOLIO // DASHBOARD →</span>
         </a>
         <a href="./assets/Anupam_Gupta_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary-action">
@@ -211,5 +212,8 @@
 
   <!-- Gateway Interactive Logic -->
   <script src="./js/landing.js?v=2.2.0"></script>
+  <script src="./js/components/Cursor.js?v=2.2.0"></script>
+  <script src="./js/components/Motion.js?v=2.2.0"></script>
+  <script src="./js/components/CommandPalette.js?v=2.2.0"></script>
 </body>
 </html>

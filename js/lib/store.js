@@ -1,12 +1,13 @@
 class GlobalStore {
   constructor() {
     this.state = {
-      theme: localStorage.getItem('cs-theme') || 'green',
+      // Legacy accent themes (green/cyan/amber) map to the editorial dark theme
+      theme: localStorage.getItem('cs-theme') === 'light' ? 'light' : 'dark',
       soundOn: localStorage.getItem('cs-sound') !== 'false',
       activeView: 'dashboard',
       logs: [
         { time: this.getTimestamp(), text: "SYS_INIT: Decryption keys generated successfully.", type: "system" },
-        { time: this.getTimestamp(), text: "SYS_INIT: CRT shaders linked.", type: "system" },
+        { time: this.getTimestamp(), text: "SYS_INIT: Aurora mesh shaders linked.", type: "system" },
         { time: this.getTimestamp(), text: "SYS_INIT: Firewalls active.", type: "success" }
       ],
       alertLevel: 'normal',

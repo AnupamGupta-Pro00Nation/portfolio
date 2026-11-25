@@ -28,7 +28,7 @@ export class LandingPage {
           <!-- Main Identity Display -->
           <div class="gateway-hero">
             <div class="gateway-pretitle">[ AUTHORIZED VISITOR CLEARANCE ]</div>
-            <h1 class="gateway-title glitch-hover" data-text="ANUPAM GUPTA">ANUPAM GUPTA</h1>
+            <h1 class="gateway-title">ANUPAM GUPTA</h1>
             <div class="gateway-subtitle">
               PURPLE TEAMING • WEB APPLICATION SECURITY • VULNERABILITY ASSESSMENT
             </div>
@@ -132,7 +132,7 @@ export class LandingPage {
       ctx.clearRect(0, 0, width, height);
 
       // 1. Grid Background
-      ctx.strokeStyle = 'rgba(0, 243, 255, 0.035)';
+      ctx.strokeStyle = 'rgba(124, 124, 244, 0.035)';
       ctx.lineWidth = 1;
       const gridSize = 40;
       for (let x = 0; x < width; x += gridSize) {
@@ -151,7 +151,7 @@ export class LandingPage {
       // 2. Radar Concentric Circles around center
       const centerX = width / 2;
       const centerY = height / 2;
-      ctx.strokeStyle = 'rgba(0, 243, 255, 0.06)';
+      ctx.strokeStyle = 'rgba(124, 124, 244, 0.06)';
       for (let r = 80; r < Math.max(width, height) / 1.5; r += 100) {
         ctx.beginPath();
         ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
@@ -164,8 +164,8 @@ export class LandingPage {
       ctx.translate(centerX, centerY);
       ctx.rotate(angle);
       const gradient = ctx.createLinearGradient(0, 0, 300, 300);
-      gradient.addColorStop(0, 'rgba(0, 255, 159, 0.22)');
-      gradient.addColorStop(1, 'rgba(0, 255, 159, 0.0)');
+      gradient.addColorStop(0, 'rgba(74, 222, 128, 0.22)');
+      gradient.addColorStop(1, 'rgba(74, 222, 128, 0.0)');
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.moveTo(0, 0);
@@ -176,7 +176,7 @@ export class LandingPage {
 
       // 4. Interactive Crosshairs when mouse moves
       if (mouse.active) {
-        ctx.strokeStyle = 'rgba(0, 243, 255, 0.35)';
+        ctx.strokeStyle = 'rgba(124, 124, 244, 0.35)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, 22, 0, Math.PI * 2);
@@ -194,7 +194,7 @@ export class LandingPage {
       targets.forEach(t => {
         t.pulseVal += t.pulseSpeed;
         const currentAlpha = t.alpha * (0.6 + 0.4 * Math.sin(t.pulseVal));
-        ctx.fillStyle = `rgba(0, 255, 159, ${currentAlpha})`;
+        ctx.fillStyle = `rgba(74, 222, 128, ${currentAlpha})`;
         ctx.beginPath();
         ctx.arc(t.x, t.y, t.radius, 0, Math.PI * 2);
         ctx.fill();

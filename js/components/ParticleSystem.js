@@ -82,13 +82,11 @@ export class ParticleSystem {
 
   updateColors() {
     const theme = store.getState().theme;
-    if (theme === 'amber') {
-      this.colorRGB = '255, 183, 0';
-    } else if (theme === 'cyan') {
-      this.colorRGB = '0, 243, 255';
+    if (theme === 'light') {
+      this.colorRGB = '91, 91, 214';
     } else {
-      // Default Matrix Green
-      this.colorRGB = '0, 255, 102';
+      // Editorial indigo (dark theme)
+      this.colorRGB = '124, 124, 244';
     }
   }
 

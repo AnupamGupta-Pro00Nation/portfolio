@@ -25,7 +25,7 @@ export class SandboxPage {
   render() {
     this.container.innerHTML = `
       <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--clr-border); padding-bottom: 1rem;">
-        <h1 style="font-size: 1.8rem; margin-bottom: 0.25rem;" class="crt-flicker">
+        <h1 style="font-size: 1.8rem; margin-bottom: 0.25rem;">
           <DecryptText target="SECURITY LAB SANDBOX & TOOLS"></DecryptText>
         </h1>
         <p style="font-size: 0.8rem; color: var(--clr-text-muted);">

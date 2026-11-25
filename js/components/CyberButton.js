@@ -11,18 +11,18 @@ export class CyberButton {
     buttonElement.addEventListener('click', (e) => {
       playSound('click');
       
-      // Perform visual glitch flicker
+      // Perform visual flicker
       const content = buttonElement.querySelector('.cyber-btn-content');
       if (content) {
         const originalText = content.textContent;
         content.classList.add('flickering');
         
         let counter = 0;
-        const glitchInterval = setInterval(() => {
+        const flickerInterval = setInterval(() => {
           content.textContent = Math.random().toString(36).substring(2, 7).toUpperCase();
           counter++;
           if (counter > 3) {
-            clearInterval(glitchInterval);
+            clearInterval(flickerInterval);
             content.textContent = originalText;
             content.classList.remove('flickering');
           }

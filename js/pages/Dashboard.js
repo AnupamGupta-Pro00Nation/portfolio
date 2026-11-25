@@ -61,7 +61,7 @@ export class DashboardPage {
     ];
 
     const competenciesHTML = competencies.map(comp => `
-      <div class="bracket-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
+      <div class="bracket-card spotlight tilt-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
         <div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
             <span style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--clr-text-muted);">${comp.icon} SPECIALIZATION</span>
@@ -87,7 +87,7 @@ export class DashboardPage {
       const isPurpleLoop = p.id === 'purpleloop';
       const isNids = p.id === 'network-intrusion-detection';
       return `
-      <div class="bracket-card" style="margin-bottom: 1.75rem;">
+      <div class="bracket-card spotlight tilt-card" style="margin-bottom: 1.75rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--clr-border); padding-bottom: 0.65rem;">
           <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--clr-primary); font-weight: 700;">[ PROJECT 0${idx + 1} ]</span>
@@ -184,7 +184,7 @@ export class DashboardPage {
       const isPdf = cred.fileType === 'pdf';
       const cleanId = cred.hash.replace(/^(Credential ID:\s*|Certified:\s*|Credential:\s*)/i, '');
       return `
-      <div class="cert-card">
+      <div class="cert-card spotlight">
         <div>
           <div class="cert-badge-row">
             <span class="cert-code">${cred.code}</span>
@@ -240,7 +240,7 @@ export class DashboardPage {
 
     const achievementsHTML = achievements.map(ach => {
       return `
-      <div class="award-card">
+      <div class="award-card spotlight">
         <div class="award-header">
           <span class="award-date">${ach.date}</span>
           <span class="award-badge">HONOR</span>
@@ -266,8 +266,8 @@ export class DashboardPage {
           <span class="uplink-status">GLA UNIVERSITY • CYBERCELL HQ LUCKNOW</span>
         </div>
 
-        <!-- Name with Glitch Hover Effect -->
-        <h1 class="hero-name glitch-hover" data-text="ANUPAM GUPTA">ANUPAM GUPTA</h1>
+        <!-- Name -->
+        <h1 class="hero-name">ANUPAM GUPTA</h1>
 
         <!-- Executive Subtitle -->
         <div class="hero-role-bracket">
@@ -330,7 +330,7 @@ export class DashboardPage {
     <!-- SECTION 1: CORE TECHNICAL COMPETENCIES -->
     <section id="skills-section" style="margin-bottom: 4rem;">
       <div style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="font-size: 1.8rem; color: var(--clr-primary); font-family: var(--font-header); letter-spacing: 0.05em; margin-bottom: 0.5rem;" class="crt-flicker">
+        <h2 style="font-size: 1.8rem; color: var(--clr-primary); font-family: var(--font-header); letter-spacing: 0.05em; margin-bottom: 0.5rem;">
           <DecryptText target="AREAS OF EXPERTISE"></DecryptText>
         </h2>
         <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--clr-text-muted); max-width: 680px; margin: 0 auto;">
@@ -355,7 +355,7 @@ export class DashboardPage {
           </span>
         </div>
         <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-          <div id="gh-live-stats-bar" style="display: none; font-family: var(--font-mono); font-size: 0.72rem; color: var(--clr-text-bright); background: rgba(0, 243, 255, 0.06); border: 1px solid var(--clr-border); padding: 0.4rem 0.8rem; border-radius: 3px; align-items: center; gap: 0.6rem;"></div>
+          <div id="gh-live-stats-bar" style="display: none; font-family: var(--font-mono); font-size: 0.72rem; color: var(--clr-text-bright); background: rgba(124, 124, 244, 0.06); border: 1px solid var(--clr-border); padding: 0.4rem 0.8rem; border-radius: 3px; align-items: center; gap: 0.6rem;"></div>
           <a href="https://github.com/AnupamGupta-Pro00Nation" target="_blank" rel="noopener noreferrer" class="cyber-btn cyber-btn-outline" style="padding: 0.45rem 1rem; font-size: 0.72rem; text-decoration: none;">
             GITHUB PROFILE ↗
           </a>
@@ -467,7 +467,7 @@ export class DashboardPage {
     <!-- SECTION 6: CONTACT & COLLABORATION -->
     <section id="contact-section" style="margin-bottom: 4rem;">
       <div style="text-align: center; margin-bottom: 2.5rem;">
-        <h2 style="font-size: 2rem; color: var(--clr-primary); font-family: var(--font-header); letter-spacing: 0.05em; margin-bottom: 0.5rem;" class="crt-flicker">
+        <h2 style="font-size: 2rem; color: var(--clr-primary); font-family: var(--font-header); letter-spacing: 0.05em; margin-bottom: 0.5rem;">
           <DecryptText target="LET'S CONNECT & COLLABORATE"></DecryptText>
         </h2>
         <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--clr-text-muted); max-width: 650px; margin: 0 auto;">
@@ -871,9 +871,9 @@ export class DashboardPage {
         ghBar.style.display = 'inline-flex';
         ghBar.innerHTML = `
           <span style="color: var(--clr-primary); font-weight: 700;">GITHUB TELEMETRY:</span>
-          <span>REPOS: <strong style="color: var(--clr-text-bright);">${stats.publicRepos}</strong></span>
+          <span>REPOS: <strong style="color: var(--clr-text-bright);" data-count="${stats.publicRepos}">${stats.publicRepos}</strong></span>
           <span style="opacity: 0.4;">•</span>
-          <span>FOLLOWERS: <strong style="color: var(--clr-text-bright);">${stats.followers}</strong></span>
+          <span>FOLLOWERS: <strong style="color: var(--clr-text-bright);" data-count="${stats.followers}">${stats.followers}</strong></span>
         `;
       }
       if (stats.projects) {

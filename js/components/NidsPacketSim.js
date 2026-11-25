@@ -192,8 +192,8 @@ export class NidsPacketSim {
       chip.style.borderColor = 'var(--clr-alert)';
       chip.style.color = 'var(--clr-alert)';
     } else {
-      chip.style.background = 'rgba(0, 243, 255, 0.05)';
-      chip.style.borderColor = 'rgba(0, 243, 255, 0.25)';
+      chip.style.background = 'rgba(124, 124, 244, 0.05)';
+      chip.style.borderColor = 'rgba(124, 124, 244, 0.25)';
       chip.style.color = 'var(--clr-text-bright)';
     }
 

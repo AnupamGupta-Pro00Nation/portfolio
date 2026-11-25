@@ -1,6 +1,5 @@
 import { store } from './lib/store.js';
 import { HashRouter } from './router/index.js';
-import { MatrixRain } from './components/MatrixRain.js';
 import { playSound, initAudioContext } from './hooks/useAudio.js';
 import { startThreatMonitoring } from './api/threats.js';
 import { navLinks } from './data/navigation.js?v=2.2.0';
@@ -11,7 +10,6 @@ import { SandboxPage } from './pages/Sandbox.js?v=2.2.0';
 class Application {
   constructor() {
     this.currentViewInstance = null;
-    this.matrix = null;
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => this.init());
     } else {
@@ -20,8 +18,6 @@ class Application {
   }
 
   init() {
-    this.matrix = new MatrixRain('matrix-canvas');
-
     this.bindThemeControls();
     this.bindAudioControls();
     this.bindUIBindings();
@@ -45,6 +41,11 @@ class Application {
   bindThemeControls() {
     const btnGroup = document.getElementById('theme-btn-group');
     if (!btnGroup) return;
+
+    // Sync active state with the stored theme (dark/light)
+    btnGroup.querySelectorAll('.theme-select-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.val === store.getState().theme);
+    });
 
     btnGroup.querySelectorAll('.theme-select-btn').forEach(btn => {
       btn.addEventListener('click', () => {

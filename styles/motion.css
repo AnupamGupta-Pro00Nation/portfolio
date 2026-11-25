@@ -1,0 +1,158 @@
+/* styles/motion.css — scroll reveal, progress bar, tilt, command palette,
+   and dashboard-panel restyle for the PurpleLoop / NIDS simulations. */
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--clr-primary, #7C7CF4), var(--clr-accent, #FFB86B));
+  z-index: 100002;
+  pointer-events: none;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Active nav state (Motion scroll-spy; complements the app's own spy) */
+.nav-active {
+  color: var(--clr-primary, #7C7CF4) !important;
+}
+
+/* 3D tilt cards (transform driven by Motion.js) */
+.tilt-card {
+  transition: transform 0.25s ease, border-color var(--transition-speed, 0.22s), box-shadow var(--transition-speed, 0.22s);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* --- Command palette (clean modal, not a terminal) --- */
+.cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 12, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100005;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12vh 1rem 1rem;
+}
+.cmdk-overlay.open {
+  display: flex;
+}
+.cmdk-panel {
+  width: 100%;
+  max-width: 560px;
+  background: var(--clr-bg-secondary, #121826);
+  border: 1px solid var(--clr-border, rgba(124, 124, 244, 0.18));
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: cmdk-in 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes cmdk-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.cmdk-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--clr-border, rgba(124, 124, 244, 0.18));
+  color: var(--clr-text-bright, #E8EAF0);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1rem;
+  padding: 1rem 1.1rem;
+  outline: none;
+}
+.cmdk-list {
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 0.4rem;
+}
+.cmdk-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--clr-text-main, #C6CBD8);
+  font-size: 0.9rem;
+}
+.cmdk-item.active {
+  background: rgba(var(--clr-primary-rgb, 124, 124, 244), 0.14);
+  color: var(--clr-text-bright, #E8EAF0);
+}
+.cmdk-item-hint {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  color: var(--clr-text-muted, #9AA3B2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.cmdk-empty {
+  padding: 0.9rem;
+  color: var(--clr-text-muted, #9AA3B2);
+  font-size: 0.88rem;
+  text-align: center;
+}
+.cmdk-footer {
+  border-top: 1px solid var(--clr-border, rgba(124, 124, 244, 0.18));
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  color: var(--clr-text-dim, #5B6474);
+}
+
+/* --- Simulation panels restyled as clean dashboard cards ---
+   CSS only: PurpleLoopSim / NidsPacketSim JS logic is untouched and both
+   simulations remain strictly user-triggered. */
+.pl-sim-container,
+.nids-sim-container {
+  background: var(--clr-bg-card, rgba(18, 24, 38, 0.82)) !important;
+  border: 1px solid var(--clr-border, rgba(124, 124, 244, 0.18)) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  clip-path: none !important;
+}
+#pl-sim-console,
+#nids-alerts-console,
+#nids-packet-pipeline {
+  background: var(--clr-bg-secondary, #121826) !important;
+  border: 1px solid var(--clr-border, rgba(124, 124, 244, 0.18)) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+/* Packet stream chips read as chart bars rather than terminal glyphs */
+.nids-pkt-chip {
+  border-radius: 6px !important;
+  border: 1px solid rgba(var(--clr-primary-rgb, 124, 124, 244), 0.35) !important;
+  background: linear-gradient(180deg, rgba(var(--clr-primary-rgb, 124, 124, 244), 0.22), rgba(var(--clr-primary-rgb, 124, 124, 244), 0.06)) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .cmdk-panel { animation: none; }
+  .tilt-card { transition: none; }
+  .aurora-bg::before, .aurora-bg::after { animation: none !important; }
+}

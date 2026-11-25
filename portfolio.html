@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anupam Gupta // Cybersecurity & WAPT Portfolio</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ff66'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.54-3.04 8.79-7 9.9-3.96-1.11-7-5.36-7-9.9V6.3l7-3.12z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237C7CF4'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.54-3.04 8.79-7 9.9-3.96-1.11-7-5.36-7-9.9V6.3l7-3.12z'/%3E%3C/svg%3E">
   <link rel="canonical" href="https://anupamguptaportfolio.vercel.app/portfolio.html">
   <meta name="robots" content="index, follow">
   
@@ -30,12 +30,14 @@
   <!-- Font Preconnections & Stylesheets -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@500;700;800;900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./styles/variables.css?v=2.2.0">
   <link rel="stylesheet" href="./styles/global.css?v=2.2.0">
   <link rel="stylesheet" href="./styles/effects.css?v=2.2.0">
   <link rel="stylesheet" href="./styles/hero.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/cursor.css?v=2.2.0">
+  <link rel="stylesheet" href="./styles/motion.css?v=2.2.0">
 
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json">
@@ -100,10 +102,8 @@
 </head>
 <body class="cyber-executive">
 
-  <!-- Immersive Overlays -->
-  <div class="crt-overlay"></div>
-  <div class="crt-vignette"></div>
-  <canvas id="matrix-canvas"></canvas>
+  <!-- Aurora gradient mesh background -->
+  <div class="aurora-bg" aria-hidden="true"></div>
 
   <!-- Main App Wrapper -->
   <div id="app-container">
@@ -111,7 +111,7 @@
     <!-- Floating Glass Navbar (Executive Cyber Architecture) -->
     <nav class="glass-navbar" id="main-navbar">
       <a href="index.html" class="nav-logo" title="Back to Interactive Gateway">
-        <span class="glitch-text" data-text="ANUPAM GUPTA">ANUPAM GUPTA</span>
+        <span>ANUPAM GUPTA</span>
         <span class="nav-version-tag">CYBERSECURITY</span>
       </a>
 
@@ -223,9 +223,8 @@
             <div style="display: flex; flex-direction: column; gap: 0.4rem;">
               <span style="font-size: 0.65rem; color: var(--clr-text-muted);">SELECT ACCENT PALETTE</span>
               <div style="display: flex; gap: 0.5rem;" id="theme-btn-group">
-                <button class="theme-select-btn active" data-val="green" style="background: #00ff66; border: none; width: 16px; height: 16px; border-radius: 50%; cursor: pointer;" title="Matrix Green"></button>
-                <button class="theme-select-btn" data-val="amber" style="background: #ffb000; border: none; width: 16px; height: 16px; border-radius: 50%; cursor: pointer;" title="Hacker Amber"></button>
-                <button class="theme-select-btn" data-val="cyan" style="background: #00e5ff; border: none; width: 16px; height: 16px; border-radius: 50%; cursor: pointer;" title="Cyber Cyan"></button>
+                <button class="theme-select-btn active" data-val="dark" style="background: #7C7CF4; border: none; width: 16px; height: 16px; border-radius: 50%; cursor: pointer;" title="Editorial Dark"></button>
+                <button class="theme-select-btn" data-val="light" style="background: #F7F5F0; border: 1px solid var(--clr-border); width: 16px; height: 16px; border-radius: 50%; cursor: pointer;" title="Editorial Light"></button>
               </div>
             </div>
           </div>
@@ -256,6 +255,11 @@
     </main>
 
   </div>
+
+  <!-- Interaction Enhancements (vanilla, non-module) -->
+  <script src="./js/components/Cursor.js?v=2.2.0"></script>
+  <script src="./js/components/Motion.js?v=2.2.0"></script>
+  <script src="./js/components/CommandPalette.js?v=2.2.0"></script>
 
   <!-- Entry Script (Native ES Module) -->
   <script type="module" src="./js/app.js?v=2.2.0"></script>

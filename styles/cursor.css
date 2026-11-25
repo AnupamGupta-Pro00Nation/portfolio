@@ -1,0 +1,96 @@
+/* styles/cursor.css — custom cursor, only on fine-pointer, motion-safe devices.
+   Cursor.js adds .has-custom-cursor to <html> only when it activates, so the
+   native cursor is never hidden on touch devices or with reduced motion. */
+
+.has-custom-cursor, .has-custom-cursor a, .has-custom-cursor button,
+.has-custom-cursor input, .has-custom-cursor textarea, .has-custom-cursor select,
+.has-custom-cursor [role="button"] {
+  cursor: none;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clr-primary, #7C7CF4);
+  pointer-events: none;
+  z-index: 100001;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--clr-primary, #7C7CF4);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.18s ease, height 0.18s ease, border-radius 0.18s ease;
+}
+
+.cursor-ring-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-text-bright, #E8EAF0);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  user-select: none;
+}
+
+.cursor-ring.is-hover .cursor-ring-label {
+  opacity: 1;
+}
+
+/* Text-entry state: ring collapses into a thin I-beam style bar */
+.cursor-ring.is-text {
+  width: 2px;
+  height: 22px;
+  border-radius: 2px;
+}
+
+/* Keyboard focus must always stay visible */
+:focus-visible {
+  outline: 2px solid var(--clr-primary, #7C7CF4);
+  outline-offset: 2px;
+}
+
+/* Magnetic elements spring back smoothly when the cursor leaves */
+.magnetic {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Spotlight cards: soft radial highlight that follows the cursor via --mx/--my */
+.spotlight {
+  position: relative;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--clr-primary-rgb, 124, 124, 244), 0.14), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+  .magnetic { transition: none; }
+}
