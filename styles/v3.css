@@ -543,3 +543,10 @@ body[data-theme="light"] {
 .main-content-panel li {
   text-shadow: 0 1px 10px rgba(2, 5, 11, 0.65), 0 0 3px rgba(2, 5, 11, 0.55);
 }
+
+/* v3.2.2: fade the live feed's bottom edge instead of a hard mid-glyph
+   cut where the scrollable feed overflows its box. */
+#live-threat-feed {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 16px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 16px), transparent 100%);
+}
