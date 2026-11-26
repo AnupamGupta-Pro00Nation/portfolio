@@ -89,17 +89,55 @@
     requestAnimationFrame(step);
   }
 
+  /* Reveal observer: root is the element that actually scrolls. The dashboard
+     scrolls the window on desktop (main-content-panel has overflow:visible),
+     but if a layout ever makes the panel itself the scroller, a viewport-root
+     observer would still work — except it must observe against the panel.
+     Detect it the same way scrollMetrics() does, so the two never disagree. */
+  function revealRoot() {
+    var container = document.querySelector('.main-content-panel');
+    if (container && container.scrollHeight > container.clientHeight + 4) return container;
+    return null; /* viewport */
+  }
   var revealObserver = null;
   if ('IntersectionObserver' in window && !reducedMotion) {
     revealObserver = new IntersectionObserver(function (entries) {
       var batch = entries.filter(function (en) { return en.isIntersecting; });
       batch.forEach(function (en, i) {
         en.target.style.transitionDelay = Math.min(i * 60, 300) + 'ms';
-        en.target.classList.add('revealed');
+        revealElement(en.target);
         revealObserver.unobserve(en.target);
       });
-    }, { threshold: 0.15 });
+    }, { root: revealRoot(), threshold: 0.1 });
   }
+
+  /* Fail-safe: .reveal sets opacity:0, so a section is invisible until it is
+     revealed. If the observer never delivers (wrong root, threshold never met,
+     observer paused) the whole main column stays blank forever — exactly the
+     bug seen on portfolio.html. Never leave that to chance: every tagged
+     element is force-revealed 1.2s after tagging, and everything still hidden
+     is revealed 2s after window load. The observer still does the pretty
+     staggered reveal whenever it fires first; the timeout only fires when it
+     doesn't, so there is no visible change on a healthy page. */
+  function revealElement(el) {
+    if (el.dataset.revealTimer) {
+      clearTimeout(Number(el.dataset.revealTimer));
+      delete el.dataset.revealTimer;
+    }
+    el.classList.add('revealed');
+  }
+  function armRevealFallback(el) {
+    if (el.dataset.revealTimer) return;
+    el.dataset.revealTimer = String(setTimeout(function () {
+      revealElement(el);
+      if (revealObserver) revealObserver.unobserve(el);
+    }, 1200));
+  }
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.revealed)').forEach(revealElement);
+    }, 2000);
+  });
   var counterObserver = null;
   if ('IntersectionObserver' in window) {
     counterObserver = new IntersectionObserver(function (entries) {
@@ -122,6 +160,7 @@
       }
       el.classList.add('reveal');
       revealObserver.observe(el);
+      armRevealFallback(el);
     });
   }
   function tagCounters(root) {
